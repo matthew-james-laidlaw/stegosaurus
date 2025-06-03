@@ -1,0 +1,26 @@
+services:
+
+    api:
+        build:
+            context: ./api
+        depends_on:
+            - database
+            - object-store
+            - message-broker
+
+    worker:
+        build:
+            context: ./worker
+        depends_on:
+            - database
+            - object-store
+            - message-broker
+
+    database:
+        image: postgres
+
+    object-store:
+        image: minio/minio
+
+    message-broker:
+        image: rabbitmq
