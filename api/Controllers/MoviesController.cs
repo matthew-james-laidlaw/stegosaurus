@@ -1,11 +1,20 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace api.Controllers;
 
 public class Movie
 {
+    public Guid Id { get; set; }
     public string Title { get; set; }
     public string Director { get; set; }
+}
+
+public class CreateMovieDto
+{
+    public string Title { get; set; }
+    public string Director { get; set; }
+    public IFormFile File { get; set; }
 }
 
 [ApiController]
@@ -26,8 +35,14 @@ public class MoviesController : ControllerBase
         throw new NotImplementedException();
     }
 
+    [HttpGet("{id:guid}/file")]
+    public async Task<IActionResult> GetFile([FromRoute] Guid id)
+    {
+        throw new NotImplementedException();
+    }
+
     [HttpPost]
-    public async Task<ActionResult<Movie>> Create([FromBody] Movie movie)
+    public async Task<ActionResult<Movie>> Create([FromForm] CreateMovieDto dto)
     {
         throw new NotImplementedException();
     }
